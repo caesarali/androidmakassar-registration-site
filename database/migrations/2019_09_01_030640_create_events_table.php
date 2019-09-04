@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('code')->unique()->nullable();
             $table->string('name');
-            $table->text('descripstion')->nullable();
+            $table->text('description')->nullable();
             $table->unsignedInteger('price')->default(0);
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('city_id');
