@@ -70,7 +70,7 @@
                                 <label class="col-6 col-sm-2 col-form-label font-weight-bold d-flex">Informasi <span class="ml-auto">:</span></label>
                                 <div class="col">
                                     <p class="form-control-plaintext">
-                                        {!! $item->event->description !!}
+                                        {{ $item->event->description }}
                                     </p>
                                 </div>
                             </div>
