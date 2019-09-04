@@ -1,0 +1,41 @@
+$breadcrumb-divider: quote(">");
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Fontawesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+
+.header-top {
+    background-color: #f1f5f8;
+}
+
+.header-top {
+    font-size: 12px;
+    color: #384554;
+}
+
+.app-shadow {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+}
+
+.card {
+    border: 0;
+    box-shadow: 0 2px 3px rgba(0,0,0,.16) !important;
+}
+
+.card-header {
+    background-color: #fff;
+}
+
+.breadcrumb {
+    background-color: #fafafa;
+}
