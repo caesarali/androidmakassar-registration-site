@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Receipt')
+
 @section('breadcrumb')
 <ol class="breadcrumb">
     <li class="mr-auto">

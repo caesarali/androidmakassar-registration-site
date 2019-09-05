@@ -39,3 +39,8 @@ $breadcrumb-divider: quote(">");
 .breadcrumb {
     background-color: #fafafa;
 }
+
+.navbar-nav>.nav-item>.nav-link {
+    padding-right: 15px;
+    padding-left: 15px;
+}

@@ -11,7 +11,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}"/>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -48,7 +49,7 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white @guest shadow-sm @endguest">
                 <div class="container">
                     <a class="navbar-brand py-3" href="{{ url('/') }}">
-                        <img src="https://androidmakassar.com/wp-content/uploads/2019/08/anro-6.png" alt="Android Makassar">
+                        <img width="255" height="73" src="https://androidmakassar.com/wp-content/uploads/2019/09/lgogo-6.png" class="img-fluid" alt="Android Makassar">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -68,6 +69,15 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://androidmakassar.com" target="_blank">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://androidmakassar.com/index.php/privacy-policy/" target="_blank">Kebijakan Privasi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://androidmakassar.com/index.php/kontak//" target="_blank">Kontak</a>
+                                </li>
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>

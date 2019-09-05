@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }} - Admin Panel</title>
-
+    <link href="{{ asset('favicon.png') }}" rel="shortcut icon" type="image/png">
+    @yield('styles')
     <link href="{{ asset('css/androidmakassar.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>

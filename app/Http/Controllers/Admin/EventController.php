@@ -25,7 +25,17 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|unique:events',
+            'description' => 'required|string',
+            'price' => 'required|integer',
+            'category_id' => 'required|integer',
+            'city_id' => 'required|integer'
+        ]);
 
+        $courses = Courses::create($request->all());
+
+        return redirect()->route('courses.index')->withSuccess('Kursus baru ditambahkan.');
     }
 
     public function show($id)
@@ -41,5 +51,21 @@ class EventController extends Controller
         $cities = City::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
         return view('pages.admin.courses.edit', compact('courses', 'cities', 'categories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $courses = Courses::findOrFail($id);
+        $request->validate([
+            'name' => 'required|string|unique:events,name,' . $courses->id,
+            'description' => 'required|string',
+            'price' => 'required|integer',
+            'category_id' => 'required|integer',
+            'city_id' => 'required|integer'
+        ]);
+
+        $courses->update($request->all());
+
+        return redirect()->back()->withSuccess('Perubahan disimpan.');
     }
 }

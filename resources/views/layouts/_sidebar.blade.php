@@ -1,8 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ url('/') }}" class="brand-link">
-        <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+        <img src="{{ asset('favicon.png') }}" alt="{{ config('app.name') }}" class="brand-image img-circle bg-white elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light text-uppercase">{{ config('app.name') }}</span>
     </a>
 
     <div class="sidebar">
