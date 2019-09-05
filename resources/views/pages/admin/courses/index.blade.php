@@ -93,7 +93,7 @@
                                             <a href="{{ route('courses.show', $item->code) }}" class="text-secondary mx-2 text-decoration-none">
                                                 <i class="far fa-user"></i>
                                             </a>
-                                            <a href="{{ route('courses.edit', $item->id) }}" class="text-secondary text-decoration-none mx-2">
+                                            <a href="{{ route('courses.edit', $item->code) }}" class="text-secondary text-decoration-none mx-2">
                                                 <i class="far fa-edit"></i>
                                             </a>
                                             <form action="{{ route('courses.destroy', $item->id) }}" method="POST" class="d-inline">

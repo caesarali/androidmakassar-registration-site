@@ -34,4 +34,12 @@ class EventController extends Controller
         $registrations = $courses->registrations->load('participant');
         return view('pages.admin.courses.show', compact('courses', 'registrations'));
     }
+
+    public function edit($id)
+    {
+        $courses = Courses::where('code', $id)->firstOrFail();
+        $cities = City::orderBy('name', 'asc')->get();
+        $categories = Category::orderBy('name', 'asc')->get();
+        return view('pages.admin.courses.edit', compact('courses', 'cities', 'categories'));
+    }
 }

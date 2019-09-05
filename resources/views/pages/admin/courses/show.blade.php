@@ -35,7 +35,7 @@
             </div>
             <div class="col-auto">
                 <div class="btn-group" role="group" aria-label="Action Button">
-                    <a href="#" class="btn btn-success app-shadow">
+                    <a href="#" class="btn btn-primary app-shadow">
                         Export
                     </a>
                 </div>
@@ -48,6 +48,12 @@
                         <div class="custom-control custom-checkbox mr-auto">
                             <input type="checkbox" class="custom-control-input" id="checkAll">
                             <label class="custom-control-label" for="checkAll"></label>
+                        </div>
+
+                        <div class="ml-auto">
+                            <span class="badge badge-pill badge-secondary">{{ $registrations->where('status', 0)->count() }}</span>
+                            <span class="badge badge-pill badge-warning">{{ $registrations->where('status', 1)->count() }}</span>
+                            <span class="badge badge-pill badge-success">{{ $registrations->where('status', 2)->count() }}</span>
                         </div>
                     </div>
 
@@ -80,22 +86,24 @@
                                         <td>{{ $item->participant->email }}</td>
                                         <td>{{ $item->participant->phone }}</td>
                                         <td class="text-center">
-                                            @if ($item->status)
-                                                <span class="badge badge-success">Done</span>
+                                            @if ($item->status == 2)
+                                                <span class="badge badge-success"><i class="fas fa-check mr-1"></i> Done</span>
+                                            @elseif ($item->status == 1)
+                                                <span class="badge badge-warning">Need Verification</span>
                                             @else
-                                                <span class="badge badge-secondary">Unverified</span>
+                                                <span class="badge badge-secondary">Pending</span>
                                             @endif
                                         </td>
                                         <td class="text-right" nowrap>
-                                            <a href="#" class="text-secondary text-decoration-none mx-2" v-on:click="showPaymentDetail('{{ $item->code }}')">
+                                            <a href="#" class="text-secondary text-decoration-none mx-2" v-on:click="showPaymentDetail('{{ $item->code }}', '{{ route('registrations.update', $item->id) }}')">
                                                 <i class="far fa-check-square"></i>
                                             </a>
                                             <a href="#" class="text-secondary mx-2 text-decoration-none">
                                                 <i class="far fa-user"></i>
                                             </a>
-                                            <form action="#" method="POST" class="d-inline">
+                                            <form action="{{ route('registrations.destroy', $item->id) }}" method="POST" class="d-inline">
                                                 @csrf @method('delete')
-                                                <a href="#" class="text-secondary text-decoration-none ml-2" onclick="destroy(this)">
+                                                <a href="{{ route('registrations.destroy', $item->id) }}" class="text-secondary text-decoration-none ml-2" onclick="destroy(this)">
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
                                             </form>
@@ -114,7 +122,7 @@
         </div>
     </div>
 </section>
-
+<light-box ref="lightbox"></light-box>
 @include('pages.admin.courses._payment')
 @endsection
 
@@ -128,12 +136,20 @@
             }
         },
         methods: {
-            showPaymentDetail(code) {
+            showPaymentDetail(code, updateRoute) {
                 axios.get('/api/registrations/' + code)
                 .then(({ data }) => {
                     this.payment = data
                     $('#paymentModal').modal('show')
+                    $('#paymentModal .modal-footer form').attr('action', updateRoute)
                 })
+            },
+            showPhoto(src, ext=null) {
+                let image = {
+                    src: src,
+                    ext: ext
+                }
+                this.$refs.lightbox.open(image)
             }
         }
     })

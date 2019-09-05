@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name') }} - {{ config('app.desc') }}</title>
+    <title>{{ config('app.name') }} - Admin Panel</title>
 
     <link href="{{ asset('css/androidmakassar.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -41,5 +41,23 @@
 
     <script src="{{ asset('js/androidmakassar.js') }}"></script>
     @yield('scripts')
+    <script>
+        function destroy(target) {
+            event.preventDefault()
+            $confirm.delete().then((result) => {
+                if (result.value) {
+                    $(target).parent().submit()
+                }
+            })
+        }
+    </script>
+    @if (session('success'))
+        <script>
+            $toast.fire({
+                type: 'success',
+                title: '{{ session('success') }}'
+            })
+        </script>
+    @endif
 </body>
 </html>

@@ -27,5 +27,11 @@ Route::get('/events/{city}', function ($city) {
 Route::get('/registrations/{code}', function ($code) {
     $registration = Registration::where('code', $code)->firstOrFail();
     $registration->load(['receipt', 'participant', 'event']);
+    $registration['paybill'] = number_format($registration->paybill, 0,',','.');
+    if ($registration->receipt) {
+        $registration->receipt['date'] = $registration->receipt->paid_at->format('d/m/Y');
+        $registration->receipt['file'] = asset($registration->receipt->file);
+        $registration->receipt['file_ext'] = $registration->receipt->fileInfo()['extension'];
+    }
     return response()->json($registration);
 });

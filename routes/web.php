@@ -20,6 +20,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['role:admin|superadmin']], function () {
     Route::resource('courses', 'EventController');
+    Route::resource('registrations', 'RegistrationController')->only(['update', 'destroy']);
+    Route::resource('users', 'UserController');
+    Route::resource('members', 'MemberController');
 });
 
 Route::group(['namespace' => 'Member', 'middleware' => ['role:member']], function () {
