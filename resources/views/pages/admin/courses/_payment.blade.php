@@ -47,14 +47,17 @@
                     <label class="col-4 col-sm-4 col-form-label text-uppercase font-weight-bold d-flex">Bukti Transfer <span class="ml-auto">:</span></label>
                     <div class="col">
                         <p class="form-control-plaintext">
-                            <a v-if="payment.receipt && payment.receipt.file_ext == 'pdf'" :href="'/' + payment.file" class="text-decoration-none text-secondary" target="_blank">
-                                <i class="far fa-file-pdf"></i>
-                                @{{ payment.receipt.date }} - @{{ payment.receipt.name }} (@{{ payment.receipt.bank }})
-                            </a>
-                            <a v-else href="#" class="text-decoration-none text-secondary" v-on:click.prevent="showPhoto(payment.receipt.file)">
-                                <i class="far fa-image"></i>
-                                @{{ payment.receipt.date }} - @{{ payment.receipt.name }} (@{{ payment.receipt.bank }})
-                            </a>
+                            <template v-if="payment.receipt">
+                                <a v-if="payment.receipt.file_ext == 'pdf'" :href="'/' + payment.file" class="text-decoration-none text-secondary" target="_blank">
+                                    <i class="far fa-file-pdf"></i>
+                                    @{{ payment.receipt.date }} - @{{ payment.receipt.name }} (@{{ payment.receipt.bank }})
+                                </a>
+                                <a v-else href="#" class="text-decoration-none text-secondary" v-on:click.prevent="showPhoto(payment.receipt.file)">
+                                    <i class="far fa-image"></i>
+                                    @{{ payment.receipt.date }} - A/N: @{{ payment.receipt.name }} (@{{ payment.receipt.bank }})
+                                </a>
+                            </template>
+                            <template v-else>-</template>
                         </p>
                     </div>
                 </div>

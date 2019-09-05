@@ -91,7 +91,7 @@
                                         </td>
                                         <td class="text-right" nowrap>
                                             <a href="{{ route('courses.show', $item->code) }}" class="text-secondary mx-2 text-decoration-none">
-                                                <i class="far fa-user"></i>
+                                                <i class="far fa-user mr-1"></i> {{ $item->registrations->count() }}
                                             </a>
                                             <a href="{{ route('courses.edit', $item->code) }}" class="text-secondary text-decoration-none mx-2">
                                                 <i class="far fa-edit"></i>
