@@ -28,7 +28,7 @@ Username : {{ $user->username }}<br>
 Password : {{ $password }}
 @endcomponent
 
-
+<br><br><br>
 
 Thanks,<br>
 {{ config('app.name') }}

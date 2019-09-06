@@ -1,6 +1,11 @@
 <div class="form-group">
     <label for="name">Courses / Events <span class="text-danger">*</span></label>
     <input id="name" class="form-control" name="name" placeholder="Courses or Event name..." value="{{ old('name', $courses->name ?? '') }}" required>
+    @error('name')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
 </div>
 <div class="form-row">
     <div class="form-group col-md">

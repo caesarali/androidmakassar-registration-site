@@ -45,7 +45,15 @@
                             <div class="form-row">
                                 <label class="col-6 col-sm-2 col-form-label font-weight-bold d-flex">Biaya <span class="ml-auto">:</span></label>
                                 <div class="col">
-                                    <p class="form-control-plaintext">Rp. {{ number_format($item->event->price) }},-</p>
+                                    <p class="form-control-plaintext">
+                                        {{-- @if ($item->event->have_promo)
+                                            <del class="text-muted font-italic">Rp. {{ number_format($item->event->getOriginal('price'), 0,',','.') }}</del>
+                                        @endif --}}
+                                        Rp. {{ number_format($item->paybill, 0,',','.') }},-
+                                        {{-- @if ($item->event->have_promo)
+                                            <span class="badge badge-warning ml-1">Potongan {{ $item->event->promo->sum('discount') }}%</span>
+                                        @endif --}}
+                                    </p>
                                 </div>
                             </div>
                             <div class="form-row">

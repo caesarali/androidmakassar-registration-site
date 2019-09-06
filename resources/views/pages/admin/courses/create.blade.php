@@ -56,7 +56,7 @@
         $(function () {
             //Add text editor
             $('.summernote').summernote({
-                height:500,
+                height:300,
             })
         })
     </script>
