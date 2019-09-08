@@ -38,11 +38,15 @@ class EventController extends Controller
         return redirect()->route('courses.index')->withSuccess('Kursus baru ditambahkan.');
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $courses = Courses::where('code', $id)->firstOrFail();
         $registrations = $courses->registrations->load('participant');
-        return view('pages.admin.courses.show', compact('courses', 'registrations'));
+        if ($request->schedule) {
+            $registrations = $registrations->where('schedule_id', $request->schedule);
+        }
+        $registrations->load('participant');
+        return view('pages.admin.courses.show', compact('courses', 'registrations', 'request'));
     }
 
     public function edit($id)

@@ -45,7 +45,23 @@
                                 @enderror
                             </div>
                         </div>
-
+                        <div class="form-group row">
+                            <label for="schedule_id" class="col-md-3 col-form-label text-md-right">Jadwal <span class="text-danger">*</span></label>
+                            <div class="col-md-8">
+                                <select name="schedule_id" id="schedule_id" class="form-control @error('schedule_id') is-invalid @enderror" required>
+                                    <option value="" hidden>Pilih jadwal:</option>
+                                    @foreach ($schedules as $item)
+                                        <option value="{{ $item->id }}" {{ old('city_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('schedule_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <hr>
                         <div class="form-group row">
                             <label for="name" class="col-md-3 col-form-label text-md-right">Nama <span class="text-danger">*</span></label>
                             <div class="col-md-8">

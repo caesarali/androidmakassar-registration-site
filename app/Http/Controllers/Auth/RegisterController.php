@@ -9,6 +9,7 @@ use App\Models\Participant;
 use App\Models\Registration;
 
 use App\Http\Controllers\Controller;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -29,7 +30,8 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $cities = City::all();
-        return view('auth.register', compact('cities', 'events'));
+        $schedules = Schedule::all();
+        return view('auth.register', compact('cities', 'schedules'));
     }
 
     protected function validator(array $data)
@@ -74,6 +76,7 @@ class RegisterController extends Controller
         Registration::create([
             'event_id' => $event->id,
             'participant_id' => $participant->id,
+            'schedule_id' => $data['schedule_id'],
             'paybill' => $event->price
         ]);
 

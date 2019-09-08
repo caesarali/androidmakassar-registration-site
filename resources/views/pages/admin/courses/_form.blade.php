@@ -32,7 +32,7 @@
     </div>
     <div class="form-group col-md">
         <label for="price">Price <span class="text-danger">*</span></label>
-        <input type="number" id="price" class="form-control" name="price" placeholder="Pricing..." value="{{ old('price', $courses->price ?? '') }}" required>
+        <input type="number" id="price" class="form-control" name="price" placeholder="Pricing..." value="{{ old('price', $courses->getOriginal('price') ?? '') }}" required>
     </div>
 </div>
 <div class="form-group">

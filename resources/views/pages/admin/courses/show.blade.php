@@ -20,7 +20,7 @@
 
 <section class="content">
     <div class="container-fluid">
-        <div class="row mb-3">
+        {{-- <div class="row mb-3">
             <div class="col">
                 <form class="form-inline" action="{{ url()->current() }}">
                     <div class="input-group app-shadow">
@@ -40,7 +40,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
@@ -48,13 +48,24 @@
                         <div class="custom-control custom-checkbox mr-auto">
                             <input type="checkbox" class="custom-control-input" id="checkAll">
                             <label class="custom-control-label" for="checkAll"></label>
-                        </div>
 
-                        <div class="ml-auto">
                             <span class="badge badge-pill badge-secondary">{{ $registrations->where('status', 0)->count() }}</span>
                             <span class="badge badge-pill badge-warning">{{ $registrations->where('status', 1)->count() }}</span>
                             <span class="badge badge-pill badge-success">{{ $registrations->where('status', 2)->count() }}</span>
                         </div>
+
+                        <form action="{{ url()->current() }}" class="ml-auto">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-light border-light pr-0"><i class="fas fa-filter"></i></div>
+                                </div>
+                                <select name="schedule" class="form-control form-control-sm bg-light border-light" onchange="this.form.submit()">
+                                    <option value="">Show All</option>
+                                    <option value="1" {{ $request->schedule == 1 ? 'selected' : '' }}>Weekend</option>
+                                    <option value="2" {{ $request->schedule == 2 ? 'selected' : '' }}>Weekday</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
 
                     <div class="card-body p-0 table-responsive">
@@ -62,11 +73,12 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th width="1%" class="pr-0"></th>
-                                    <th class="text-uppercase">Code Reg.</th>
+                                    <th class="text-uppercase">Code</th>
                                     <th class="text-uppercase">Date</th>
                                     <th class="text-uppercase">Name</th>
                                     <th class="text-uppercase">Email</th>
-                                    <th class="text-uppercase">Phone</th>
+                                    <th class="text-uppercase">Phone / WA</th>
+                                    <th class="text-uppercase">Schedule</th>
                                     <th class="text-uppercase text-center">Status</th>
                                     <th></th>
                                 </tr>
@@ -80,11 +92,12 @@
                                                 <label class="custom-control-label" for="{{ $item->id }}"></label>
                                             </div>
                                         </td>
-                                        <td>{{ $item->code }}</td>
-                                        <td>{{ $item->created_at->format('d/m/Y') }}</td>
-                                        <td>{{ $item->participant->name }}</td>
-                                        <td>{{ $item->participant->email }}</td>
-                                        <td>{{ $item->participant->phone }}</td>
+                                        <td nowrap>{{ $item->code }}</td>
+                                        <td nowrap>{{ $item->created_at->format('d/m/Y') }}</td>
+                                        <td nowrap>{{ $item->participant->name }}</td>
+                                        <td nowrap>{{ $item->participant->email }}</td>
+                                        <td nowrap>{{ $item->participant->phone }}</td>
+                                        <td nowrap>{{ $item->schedule->name }}</td>
                                         <td class="text-center">
                                             @if ($item->status == 2)
                                                 <span class="badge badge-success"><i class="fas fa-check mr-1"></i> Done</span>
@@ -111,7 +124,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td class="text-center text-muted font-italic" colspan="7">Empty...</td>
+                                        <td class="text-center text-muted font-italic" colspan="9">Empty...</td>
                                     </tr>
                                 @endforelse
                             </tbody>

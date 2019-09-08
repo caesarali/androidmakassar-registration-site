@@ -57,6 +57,12 @@
                                 </div>
                             </div>
                             <div class="form-row">
+                                <label class="col-6 col-sm-2 col-form-label font-weight-bold d-flex">Jadwal <span class="ml-auto">:</span></label>
+                                <div class="col">
+                                    <p class="form-control-plaintext">{{ $item->schedule->name }} <br> <small>{{ $item->schedule->description }}</small></p>
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <label class="col-6 col-sm-2 col-form-label font-weight-bold d-flex">Status <span class="ml-auto">:</span></label>
                                 <div class="col">
                                     <p class="form-control-plaintext">
@@ -77,11 +83,9 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label class="col-6 col-sm-2 col-form-label font-weight-bold d-flex">Informasi <span class="ml-auto">:</span></label>
+                                <label class="col-6 col-sm-2 col-form-label font-weight-bold d-flex">Deskripsi Kursus <span class="ml-auto">:</span></label>
                                 <div class="col">
-                                    <p class="form-control-plaintext">
-                                        {!! $item->event->description !!}
-                                    </p>
+                                    <div class="form-control-plaintext pt-2">{!! $item->event->description !!}</div>
                                 </div>
                             </div>
                         </div>

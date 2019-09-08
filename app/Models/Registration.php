@@ -9,7 +9,7 @@ class Registration extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['code', 'event_id', 'participant_id', 'paybill', 'status'];
+    protected $fillable = ['code', 'event_id', 'schedule_id', 'participant_id', 'paybill', 'status'];
 
     public function event() {
         return $this->belongsTo(Event::class);
@@ -21,6 +21,10 @@ class Registration extends Model
 
     public function receipt() {
         return $this->hasOne(Receipt::class, 'code', 'code');
+    }
+
+    public function schedule() {
+        return $this->belongsTo(Schedule::class);
     }
 
     public static function boot() {

@@ -64,8 +64,8 @@
                                 <tr>
                                     <th width="1%" class="pr-0"></th>
                                     <th class="text-uppercase">Title</th>
-                                    <th class="text-uppercase">Category</th>
                                     <th class="text-uppercase">Price</th>
+                                    <th class="text-uppercase">Promo</th>
                                     <th class="text-uppercase">Status</th>
                                     <th></th>
                                 </tr>
@@ -79,9 +79,17 @@
                                                 <label class="custom-control-label" for="{{ $item->id }}"></label>
                                             </div>
                                         </td>
-                                        <td>{{ $item->name }} - <b>{{ $item->city->name }}</b></td>
-                                        <td>{{ $item->category->name }}</td>
-                                        <td nowrap>Rp. {{ number_format($item->price) }},-</td>
+                                        <td>
+                                            {{ $item->name }} - <b>{{ $item->city->name }}</b>
+                                            <br> <small class="text-muted">{{ $item->category->name }}</small>
+                                        </td>
+                                        <td nowrap>
+                                            @if ($item->have_promo)
+                                                <del class="text-muted mr-1">Rp. {{ number_format($item->getOriginal('price'), '0',',','.') }},-</del>
+                                            @endif
+                                            Rp. {{ number_format($item->price, '0',',','.') }},-
+                                        </td>
+                                        <td nowrap>{{ $item->have_promo ? 'Diskon ' . $item->promo->discount . '%' : '-' }}</td>
                                         <td>
                                             @if ($item->status)
                                                 <span class="badge badge-success">Done</span>
