@@ -70,7 +70,7 @@
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="https://androidmakassar.com" target="_blank">Home</a>
+                                    <a class="nav-link" href="{{ url('/') }}">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="https://androidmakassar.com/index.php/privacy-policy/" target="_blank">Kebijakan Privasi</a>
@@ -85,10 +85,14 @@
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('profile.index') }}">
-                                            <i class="fas fa-cog fa-fw mr-1"></i> Profile
+                                            <i class="fas fa-user-circle fa-fw mr-3"></i> Profile
                                         </a>
+                                        <a class="dropdown-item" href="{{ route('account.index') }}">
+                                            <i class="fas fa-cog fa-fw mr-3"></i> Username & Password
+                                        </a>
+                                        <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <i class="fas fa-sign-out-alt fa-fw mr-1"></i> {{ __('Logout') }}
+                                            <i class="fas fa-sign-out-alt fa-fw mr-3"></i> {{ __('Logout') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

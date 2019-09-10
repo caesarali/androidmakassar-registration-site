@@ -30,4 +30,6 @@ Route::group(['namespace' => 'Member', 'middleware' => ['role:member']], functio
     Route::post('/registrations/{code}/receipt', 'RegistrationController@receipt')->name('receipt.save');
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
     Route::post('/profile', 'ProfileController@update')->name('profile.update');
+    Route::get('/setting', 'AccountController@index')->name('account.index');
+    Route::post('/setting', 'AccountController@update')->name('account.update');
 });

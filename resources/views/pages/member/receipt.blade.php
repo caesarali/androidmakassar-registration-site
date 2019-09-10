@@ -4,7 +4,7 @@
 
 @section('breadcrumb')
 <ol class="breadcrumb">
-    <li class="mr-auto">
+    <li class="mr-auto d-none d-md-inline">
         <h5 class="m-0">Bukti Pembayaran</h5>
     </li>
     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
