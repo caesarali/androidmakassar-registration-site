@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">New Password <span class="text-danger">*</span></label>
-                    <input id="password" autocomplete="false" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" placeholder="New password">
+                    <input id="password" autocomplete="new-password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" placeholder="New password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
