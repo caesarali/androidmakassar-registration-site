@@ -5,12 +5,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark display-4">Courses</h1>
+                <h1 class="m-0 text-dark display-4">Promo</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Courses</li>
+                    <li class="breadcrumb-item active">Promo</li>
                 </ol>
             </div>
         </div>
@@ -34,13 +34,14 @@
             </div>
             <div class="col-auto">
                 <div class="btn-group" role="group" aria-label="Action Button">
-                    <a href="{{ route('courses.create') }}" class="btn btn-primary app-shadow">
-                        Create Courses
+                    <a href="{{ route('promo.create') }}" class="btn btn-primary app-shadow">
+                        Create Promo
                     </a>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+
+        <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-header d-flex align-items-center">
@@ -57,21 +58,20 @@
                         </div>
 
                     </div>
-
                     <div class="card-body p-0 table-responsive">
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
                                     <th width="1%" class="pr-0"></th>
-                                    <th class="text-uppercase">Title</th>
-                                    <th class="text-uppercase">Price</th>
-                                    <th class="text-uppercase">Promo</th>
-                                    <th class="text-uppercase">Status</th>
+                                    <th class="text-uppercase">Code</th>
+                                    <th class="text-uppercase">Period</th>
+                                    <th class="text-uppercase text-center">Discount</th>
+                                    <th class="text-uppercase text-center">Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($courses as $item)
+                                @foreach ($promo as $item)
                                     <tr>
                                         <td class="pr-0">
                                             <div class="custom-control custom-checkbox">
@@ -79,44 +79,31 @@
                                                 <label class="custom-control-label" for="{{ $item->id }}"></label>
                                             </div>
                                         </td>
-                                        <td>
-                                            {{ $item->name }} - <b>{{ $item->city->name }}</b>
-                                            <br> <small class="text-muted">{{ $item->category->name }}</small>
+                                        <td><b>{{ $item->code }}</b> | {{ $item->event->name }}</td>
+                                        <td>{{ $item->from_date->format('d/m/Y') }} - {{ $item->to_date->format('d/m/Y') }}</td>
+                                        <td class="text-center">
+                                            <span class="badge badge-warning">{{ $item->discount }}% <i class="fas fa-tag ml-1"></i></span>
                                         </td>
-                                        <td nowrap>
-                                            @if ($item->have_promo)
-                                                <del class="text-muted mr-1">Rp. {{ number_format($item->getOriginal('price'), '0',',','.') }},-</del>
-                                            @endif
-                                            Rp. {{ number_format($item->price, '0',',','.') }},-
-                                        </td>
-                                        <td nowrap>{{ $item->have_promo ? 'Diskon ' . $item->promo->discount . '%' : '-' }}</td>
-                                        <td>
-                                            @if ($item->status)
-                                                <span class="badge badge-success">Done</span>
+                                        <td class="text-center">
+                                            @if ($item->is_valid)
+                                                <span class="badge badge-success">VALID</span>
                                             @else
-                                                <span class="badge badge-primary">On Going</span>
+                                                <span class="badge badge-secondary">CLOSED</span>
                                             @endif
                                         </td>
-                                        <td class="text-right" nowrap>
-                                            <a href="{{ route('courses.show', $item->code) }}" class="text-secondary mx-2 text-decoration-none">
-                                                <i class="far fa-user mr-1"></i> {{ $item->registrations->count() }}
-                                            </a>
-                                            <a href="{{ route('courses.edit', $item->code) }}" class="text-secondary text-decoration-none mx-2">
+                                        <td class="text-right">
+                                            <a href="{{ route('promo.edit', $item->id) }}" class="text-secondary text-decoration-none mx-2">
                                                 <i class="far fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('courses.destroy', $item->id) }}" method="POST" class="d-inline">
+                                            <form action="{{ route('promo.destroy', $item->id) }}" method="POST" class="d-inline">
                                                 @csrf @method('delete')
-                                                <a href="{{ route('courses.destroy', $item->id) }}" class="text-secondary text-decoration-none ml-2" onclick="destroy(this)">
+                                                <a href="{{ route('promo.destroy', $item->id) }}" class="text-secondary text-decoration-none ml-2" onclick="destroy(this)">
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
                                             </form>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td class="text-center text-muted font-italic" colspan="7">Empty...</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

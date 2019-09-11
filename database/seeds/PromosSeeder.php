@@ -12,7 +12,8 @@ class PromosSeeder extends Seeder
     public function run()
     {
         DB::table('promo')->insert([
-            'name' => 'Promo Launching Android Makassar',
+            'code' => 'PROMOANDMKS',
+            'description' => 'Promo Launching Android Makassar',
             'event_id' => 1,
             'discount' => 50,
             'from_date' => '2019-09-01',

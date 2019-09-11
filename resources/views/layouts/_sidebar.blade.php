@@ -19,33 +19,41 @@
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
-                        <p class="ml-1">Home</p>
+                        <p class="pl-3">Home</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('courses.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
-                        <p class="ml-1">Courses</p>
+                        <p class="pl-3">Courses</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('promo.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p class="pl-3">Promo</p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('members.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
-                        <p class="ml-1">Members</p>
+                        <p class="pl-3">Members</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('users.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-key"></i>
-                        <p class="ml-1">Account</p>
+                        <p class="pl-3">Account</p>
                     </a>
                 </li>
 
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-cog"></i>
-                        <p>Master <i class="right fas fa-angle-left"></i></p>
+                        <p class="pl-3">Master <i class="right fas fa-angle-left"></i></p>
                     </a>
 
 
@@ -53,14 +61,14 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p class="ml-1">Cities</p>
+                                <p class="pl-3">Cities</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p class="ml-1">Categories</p>
+                                <p class="pl-3">Categories</p>
                             </a>
                         </li>
                     </ul>

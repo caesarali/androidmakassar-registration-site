@@ -15,7 +15,9 @@ class CreatePromosTable extends Migration
     {
         Schema::create('promo', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code')->unique();
             $table->string('name')->default('Promo Android Makassar');
+            $table->text('description')->nullable();
             $table->unsignedInteger('event_id');
             $table->unsignedInteger('discount')->default(0);
             $table->enum('type', ['percent', 'nominal'])->default('percent');

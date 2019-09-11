@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">
+                <h1 class="m-0 text-dark display-4">
                     <a href="{{ route('courses.index') }}" class="text-decoration-none text-dark">
                         <i class="fas fa-arrow-left mr-2" style="font-size: 22px"></i> Courses
                     </a>
@@ -56,7 +56,7 @@
         $(function () {
             //Add text editor
             $('.summernote').summernote({
-                height:300,
+                height:500,
             })
         })
     </script>

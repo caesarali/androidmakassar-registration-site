@@ -23,6 +23,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['role:admin|superadmin']]
     Route::resource('registrations', 'RegistrationController')->only(['update', 'destroy']);
     Route::resource('users', 'UserController');
     Route::resource('members', 'MemberController');
+    Route::resource('promo', 'PromoController');
 });
 
 Route::group(['namespace' => 'Member', 'middleware' => ['role:member']], function () {
