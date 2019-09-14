@@ -9,6 +9,18 @@
     @yield('styles')
     <link href="{{ asset('css/androidmakassar.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142029602-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-142029602-3');
+    </script>
 </head>
 <body class="hold-transition sidebar-mini">
     <div id="app" class="wrapper">
