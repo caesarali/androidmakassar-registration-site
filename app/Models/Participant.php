@@ -10,6 +10,7 @@ class Participant extends Model
     use SoftDeletes;
 
     protected $fillable = ['name', 'gender', 'birth_date', 'email', 'phone', 'address'];
+    protected $dates = ['birth_date'];
 
     public function user() {
         return $this->belongsTo(User::class, 'email', 'email');
