@@ -85,10 +85,12 @@
                                             <span class="badge badge-warning">{{ $item->discount }}% <i class="fas fa-tag ml-1"></i></span>
                                         </td>
                                         <td class="text-center">
-                                            @if ($item->is_valid)
-                                                <span class="badge badge-success">VALID</span>
+                                            @if ($item->status == 1)
+                                                <span class="badge badge-primary">Sedang Berjalan</span>
+                                            @elseif($item->status == 2)
+                                                <span class="badge badge-success">Berakhir</span>
                                             @else
-                                                <span class="badge badge-secondary">CLOSED</span>
+                                                <span class="badge badge-secondary">Belum Berlaku</span>
                                             @endif
                                         </td>
                                         <td class="text-right">
